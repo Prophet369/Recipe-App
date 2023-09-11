@@ -1,5 +1,6 @@
 const input = document.getElementById("userinput");
 const button = document.getElementById("search");
+const resultsContainer = document.getElementById("custom-grid");
 
 function inputLength() {
   return input.value.length;
@@ -17,6 +18,7 @@ async function ApiRequest() {
 }
 
 function recipes(data) {
+  resultsContainer.innerHTML = "";
   for (let i = 0; i < data.hits.length; i++) {
     let items = data.hits[i];
     let cards = `<div class="card" style="width: 18rem;">
@@ -29,7 +31,7 @@ function recipes(data) {
     <a href="${items.recipe.url}" target="_blank" class="btn">View Recipe</a>
   </div>
 </div>`;
-    document.getElementById("custom-grid").innerHTML += cards;
+    resultsContainer.innerHTML += cards;
   }
 }
 
